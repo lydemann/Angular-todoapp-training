@@ -1,0 +1,13 @@
+<div class="todo-list-wrapper">
+    <div class="todo-list col-10">
+        <h5>TODO list</h5>
+        <hr>
+        <ul class="list-group mb-3">
+            <app-todo-item *ngFor="let todo of todoList" [todoItem]="todo"></app-todo-item>
+        </ul>
+    </div>
+
+    <div class="text-center">
+        <button class="btn-primary">Add TODO item</button>
+    </div>
+</div>
