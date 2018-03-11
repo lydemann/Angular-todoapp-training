@@ -1,0 +1,22 @@
+<div class="todo-item">
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <div>
+            <h6 class="my-0">{{todoItem.title}}</h6>
+            <small class="text-muted">{{todoItem.description}}</small>
+            <div *ngIf="todoItem.dueDate">
+                <small>Due date:
+                    <b>{{todoItem.dueDate}}</b>
+                </small>
+            </div>
+        </div>
+
+        <div class="align-right btn-group-vertical">
+            <button (click)="editClick()" type="button" class="btn btn-info" aria-label="Edit">
+                Edit
+            </button>
+            <button (click)="deleteClick()" type="button" class="btn btn-danger" aria-label="Delete">
+                Delete
+            </button>
+        </div>
+    </li>
+</div>
