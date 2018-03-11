@@ -5,7 +5,7 @@
             <small class="text-muted">{{todoItem.description}}</small>
             <div *ngIf="todoItem.dueDate"><small>Due date: <b>{{todoItem.dueDate}}</b></small></div>
         </div>
-        <button type="button" class="close" aria-label="Close">
+        <button (click)="deleteClick()" type="button" class="close" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </li>

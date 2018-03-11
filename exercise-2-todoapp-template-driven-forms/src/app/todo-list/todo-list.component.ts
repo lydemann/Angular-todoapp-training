@@ -1,5 +1,5 @@
 import { TodoListService } from './../core/todo-list.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TODOItem } from '../shared/models/todo-item';
 
 @Component({
@@ -7,7 +7,7 @@ import { TODOItem } from '../shared/models/todo-item';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
 
   constructor(private todoListService: TodoListService) { }
 
@@ -15,7 +15,7 @@ export class TodoListComponent implements OnInit {
     return this.todoListService.todoList;
   }
 
-  ngOnInit() {
+  deleteTodo(title: string) {
+    this.todoListService.todoList = this.todoListService.todoList.filter(todo => todo.title !== title);
   }
-
 }

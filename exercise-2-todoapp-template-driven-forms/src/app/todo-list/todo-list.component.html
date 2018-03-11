@@ -3,7 +3,7 @@
         <h5>TODO list</h5>
         <hr>
         <ul class="list-group mb-3">
-            <app-todo-item *ngFor="let todo of todoList" [todoItem]="todo"></app-todo-item>
+            <app-todo-item *ngFor="let todo of todoList" [todoItem]="todo" (todoDelete)="deleteTodo($event)"></app-todo-item>
         </ul>
     </div>
 
