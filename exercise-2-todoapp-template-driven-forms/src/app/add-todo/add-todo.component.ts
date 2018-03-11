@@ -1,5 +1,5 @@
 import { TodoListService } from './../core/todo-list.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TODOItem } from '../shared/models/todo-item';
 import { NgForm } from '@angular/forms';
 
@@ -10,7 +10,16 @@ import { NgForm } from '@angular/forms';
 })
 export class AddTodoComponent implements OnInit {
 
-  currentTODO: TODOItem = new TODOItem('', '');
+ private editingIndex = -1;
+
+  private _currentTODO: TODOItem = new TODOItem('', '');
+  public get currentTODO(): TODOItem {
+    return this._currentTODO;
+  }
+  @Input() public set currentTODO(value: TODOItem) {
+    this._currentTODO = Object.assign({}, value);
+    this.editingIndex = this.todoListService.todoList.findIndex(todo => todo.title === value.title);
+  }
 
   constructor(private todoListService: TodoListService) { }
 
@@ -25,8 +34,23 @@ export class AddTodoComponent implements OnInit {
       return;
     }
 
-    this.todoListService.todoList.push(this.currentTODO);
+    const currentTODOClone = Object.assign({}, this.currentTODO);
+    if (this.isEditing()) {
+      this.todoListService.todoList[this.editingIndex] = currentTODOClone;
+      this.setAdding();
+      return;
+    }
+
+    this.todoListService.todoList.push(currentTODOClone);
     this.currentTODO = new TODOItem('', '');
     form.resetForm();
+  }
+
+  private setAdding() {
+    this.editingIndex = -1;
+  }
+
+  private isEditing() {
+    return this.editingIndex !== -1;
   }
 }
