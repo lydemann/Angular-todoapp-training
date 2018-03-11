@@ -18,7 +18,7 @@ export class AddTodoComponent implements OnInit {
   }
   @Input() public set currentTODO(value: TODOItem) {
     this._currentTODO = Object.assign({}, value);
-    this.editingIndex = this.todoListService.todoList.findIndex(todo => todo.title === value.title);
+    this.editingIndex = this.todoListService.todoList.findIndex(todo => todo.id === value.id);
   }
 
   constructor(private todoListService: TodoListService) { }
