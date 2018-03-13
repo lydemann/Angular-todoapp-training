@@ -25,7 +25,7 @@ export class AddTodoComponent implements OnInit {
 
   constructor(private todoListService: TodoListService, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
-      title: this.formBuilder.control('2', Validators.required),
+      title: this.formBuilder.control('', Validators.required),
       description: this.formBuilder.control('', Validators.required),
       dueDate: this.formBuilder.control('', Validators.required),
     });
