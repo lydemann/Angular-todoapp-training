@@ -1,4 +1,4 @@
-<div class="todo-item">
+<div class="todo-item" *ngIf="this.todoItem">
     <li class="list-group-item d-flex justify-content-between lh-condensed" [ngClass]="this.todoItem.completed ? 'bg-completed' :  ''">
         <div>
             <h6 class="my-0">{{todoItem.title}}</h6>

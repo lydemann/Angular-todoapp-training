@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class TodoListService {
 
-    private todoListUrl = '//localhost:8080/todo-list';
     public todoList: TODOItem[] = [];
+    private todoListUrl = '//localhost:8080/todo-list';
 
     constructor(httpClient: HttpClient) {
          httpClient.get<Array<TODOItem>>(this.todoListUrl).subscribe(data => {

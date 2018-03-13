@@ -1,10 +1,6 @@
 # Todoapp
 
-In this project http client and a Node Express api got added for fetching the TODO list.
-
-1) Setup express server
-2) Import HttpClientModule
-3) In todoListService, get the todolist from the Node server instead of hardcoding
+In this project testing is added to the TODO app. We are adding unit testing, integration testing with mocked backend and end to end testing with Protractor.
 
 # Angular CLI
 
