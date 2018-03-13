@@ -6,7 +6,9 @@ import { InvalidDateValidatorDirective } from './invalid-date.directive';
   imports: [
     CommonModule
   ],
-  declarations: [InvalidDateValidatorDirective],
+  declarations: [
+    InvalidDateValidatorDirective,
+],
   exports: [InvalidDateValidatorDirective]
 })
 export class SharedModule { }
