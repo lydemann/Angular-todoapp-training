@@ -1,5 +1,13 @@
 # Todoapp
 
+This project contains a demo of using reactive forms to create a TODO app.
+
+1) Import ReactiveFormsModule in the AppModule
+2) Rewrite app-todo template to use reactive forms (FormGroup and formControlName attributes)
+3) Rewrite add-todo component to use reactive forms (get and set values in the formGroup)
+
+# Angular CLI
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server

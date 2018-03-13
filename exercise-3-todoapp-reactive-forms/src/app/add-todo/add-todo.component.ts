@@ -1,7 +1,7 @@
 import { TodoListService } from './../core/todo-list.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { TODOItem } from '../shared/models/todo-item';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-todo',
@@ -10,40 +10,49 @@ import { NgForm } from '@angular/forms';
 })
 export class AddTodoComponent implements OnInit {
 
- private editingIndex = -1;
-
-  private _currentTODO: TODOItem = new TODOItem('', '');
+  public form: FormGroup;
+  public isSubmitted: boolean;
+  private editingIndex = -1;
   public get currentTODO(): TODOItem {
-    return this._currentTODO;
+    const formValue = this.form.value;
+    const currentTODOClone = Object.assign({}, formValue);
+    return currentTODOClone;
   }
   @Input() public set currentTODO(value: TODOItem) {
-    this._currentTODO = Object.assign({}, value);
+    this.form.patchValue(value);
     this.editingIndex = this.todoListService.todoList.findIndex(todo => todo.id === value.id);
   }
 
-  constructor(private todoListService: TodoListService) { }
+  constructor(private todoListService: TodoListService, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      title: this.formBuilder.control('2', Validators.required),
+      description: this.formBuilder.control('', Validators.required),
+      dueDate: this.formBuilder.control('', Validators.required),
+    });
+  }
 
   ngOnInit() {
   }
 
-  save(form: NgForm) {
+  save(form: FormGroup) {
 
+    this.isSubmitted = true;
     if (!form.valid) {
       console.log('Invalid form!');
       // TODO: display form errors
       return;
     }
 
-    const currentTODOClone = Object.assign({}, this.currentTODO);
+    const currentTODOClone = this.currentTODO;
     if (this.isEditing()) {
       this.todoListService.todoList[this.editingIndex] = currentTODOClone;
       this.setAdding();
-      return;
+    } else {
+      this.todoListService.todoList.push(currentTODOClone);
+      this.currentTODO = new TODOItem('', '');
     }
-
-    this.todoListService.todoList.push(currentTODOClone);
-    this.currentTODO = new TODOItem('', '');
-    form.resetForm();
+    this.isSubmitted = false;
+    form.reset();
   }
 
   private setAdding() {

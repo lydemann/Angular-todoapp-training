@@ -38,11 +38,10 @@ export class AddTodoComponent implements OnInit {
     if (this.isEditing()) {
       this.todoListService.todoList[this.editingIndex] = currentTODOClone;
       this.setAdding();
-      return;
+    } else {
+      this.todoListService.todoList.push(currentTODOClone);
+      this.currentTODO = new TODOItem('', '');
     }
-
-    this.todoListService.todoList.push(currentTODOClone);
-    this.currentTODO = new TODOItem('', '');
     form.resetForm();
   }
 
