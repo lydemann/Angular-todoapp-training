@@ -23,6 +23,14 @@ describe('TodoListCompletedComponent', () => {
   let fixture: ComponentFixture<TodoListCompletedComponent>;
 
   beforeEach(async(() => {
+
+    const todo1 = new TODOItem('Buy milk', 'Remember to buy milk');
+    todo1.completed = true;
+    const todoList = [
+      todo1,
+      new TODOItem('Buy flowers', 'Remember to buy flowers'),
+    ];
+
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
@@ -43,7 +51,9 @@ describe('TodoListCompletedComponent', () => {
         {provide: APP_BASE_HREF, useValue : completedTodoPath },
         {
           provide: TodoListService,
-          useValue: {todoList: [new TODOItem('Buy milk', 'Remember to buy milk')]}
+          useValue: {
+            todoList: todoList
+          }
         }
       ]
     })
@@ -58,5 +68,9 @@ describe('TodoListCompletedComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have one completed TODO item', () => {
+    expect(component.todoList.length).toBe(1);
   });
 });
