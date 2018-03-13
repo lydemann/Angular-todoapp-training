@@ -12,6 +12,6 @@ export class TODOItem {
     id: string;
     title: string;
     description: string;
-    dueDate: string;
-    completed: boolean;
+    dueDate?: string;
+    completed?: boolean;
 }

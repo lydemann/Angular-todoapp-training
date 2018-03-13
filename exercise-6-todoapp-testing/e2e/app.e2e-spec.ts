@@ -1,4 +1,6 @@
+import { browser } from 'protractor';
 import { AppPage } from './app.po';
+import { TODOItem } from '../src/app/shared/models/todo-item';
 
 describe('todoapp App', () => {
   let page: AppPage;
@@ -7,8 +9,11 @@ describe('todoapp App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display welcome message', (done) => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    browser.waitForAngular().then(() => {
+      expect(page.getAmountOfTODOs()).toBe(2);
+      done();
+    });
   });
 });
