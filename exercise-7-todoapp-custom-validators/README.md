@@ -1,7 +1,6 @@
 # Todoapp
 
-In this project testing is added to the TODO app. We are adding unit testing, integration testing with mocked backend and end to end testing with Protractor.
-My recommonedation is to do unit test on the services, integration tests on the components and e2e test on the sunshine scenario of the app (at least)
+In this project a custom validator is added for validating a valid date for the dueDate.
 
 # Angular CLI
 
