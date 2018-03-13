@@ -13,13 +13,4 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  navigateToTODOList() {
-    // TODO
-  }
-
-  navigateToCompletedTODOS() {
-    // TODO
-  }
-
 }
