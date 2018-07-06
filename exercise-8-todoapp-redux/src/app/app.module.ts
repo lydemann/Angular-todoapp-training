@@ -7,19 +7,18 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
 import { FooterComponent } from './footer/footer.component';
 import { CoreModule } from './core/core.module';
 import { TodoListCompletedComponent } from './todo-list-completed/todo-list-completed.component';
 import { SharedModule } from './shared/shared.module';
-import { AddTodoComponent } from '@app/todo-list/add-todo/add-todo.component';
+import { TodoListModule } from '@app/todo-list/todo-list.module';
+import { StoreModule } from '@app/store/store.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    TodoListComponent,
     FooterComponent,
     TodoListCompletedComponent
 ],
@@ -30,7 +29,9 @@ import { AddTodoComponent } from '@app/todo-list/add-todo/add-todo.component';
     CoreModule,
     SharedModule,
     HttpClientModule,
-    appRouterModule
+    appRouterModule,
+    TodoListModule,
+    StoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

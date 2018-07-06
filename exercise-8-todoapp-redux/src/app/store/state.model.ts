@@ -7,5 +7,5 @@ export class AppState {
         this.todoList = new TodoListState();
     }
 
-    todoList: TodoListState;
+    todoList?: TodoListState;
 }

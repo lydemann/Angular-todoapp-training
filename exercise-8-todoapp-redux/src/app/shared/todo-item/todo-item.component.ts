@@ -23,7 +23,7 @@ export class TodoItemComponent implements OnInit {
   }
 
   public deleteClick() {
-    this.todoDelete.emit(this.todoItem.id);
+    this.todoDelete.emit(this.todoItem);
   }
 
   public editClick() {

@@ -29,7 +29,7 @@ export class StoreModule {
     // it too.
     store.configureStore(
       rootReducer,
-      null,
+      {} as any,
       [ createLogger(), ...rootEpics.createEpics() ],
       devTools.isEnabled() ? [ devTools.enhancer() ] : []);
   }

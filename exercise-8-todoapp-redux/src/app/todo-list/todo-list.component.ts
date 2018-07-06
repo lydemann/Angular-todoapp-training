@@ -1,6 +1,8 @@
-import { TODOItem } from './../shared/models/todo-item';
-import { TodoListService } from '../core/todo-list/todo-list.service';
 import { Component } from '@angular/core';
+import { TodoListSelector } from '@app/core/todo-list/redux-api/todo-list.selector';
+import { TodoListService } from '@app/core/todo-list/todo-list.service';
+import { TODOItem } from '@app/shared/models/todo-item';
+import { TodoListActions } from '@app/core/todo-list/redux-api/todo-list.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,18 +10,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
-
   currentTODO: TODOItem = new TODOItem('', '');
 
-  constructor(private todoListService: TodoListService) { }
-
-  get todoList() {
-    return this.todoListService.todoList;
+  constructor(
+    private todoListService: TodoListService,
+    private todoListSelector: TodoListSelector,
+    private todoListActions: TodoListActions
+  ) {
+    todoListSelector.todoList$.subscribe(todoList => {
+      this.todoList = todoList;
+    });
   }
 
-  deleteTodo(id: string) {
-    const deleteIndex = this.todoListService.todoList.findIndex(todo => todo.id === id);
-    this.todoListService.todoList.splice(deleteIndex, 1);
+  todoList;
+
+  deleteTodo(todoItem: TODOItem) {
+    this.todoListActions.todoItemDeleted(todoItem);
   }
 
   editTodo(todoItem: TODOItem) {

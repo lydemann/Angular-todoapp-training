@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '@app/shared/shared.module';
 import { AddTodoComponent } from '@app/todo-list/add-todo/add-todo.component';
+import { TodoListComponent } from '@app/todo-list/todo-list.component';
 
 
 @NgModule({
   declarations: [
     AddTodoComponent,
+    TodoListComponent
 ],
   imports: [
     BrowserModule,
@@ -20,4 +22,4 @@ import { AddTodoComponent } from '@app/todo-list/add-todo/add-todo.component';
   ],
   providers: [],
 })
-export class AppModule { }
+export class TodoListModule { }

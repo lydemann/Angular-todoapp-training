@@ -1,3 +1,4 @@
+import { TodoListSelector } from '@app/core/todo-list/redux-api/todo-list.selector';
 import { Component, OnInit } from '@angular/core';
 import { TodoListService } from '../core/todo-list/todo-list.service';
 
@@ -8,9 +9,6 @@ import { TodoListService } from '../core/todo-list/todo-list.service';
 })
 export class TodoListCompletedComponent {
 
-  constructor(private todoListService: TodoListService) { }
+  constructor(private todoListService: TodoListService, public todoListSelector: TodoListSelector) { }
 
-  get todoList() {
-    return this.todoListService.todoList.filter(todo => todo.completed);
-  }
 }

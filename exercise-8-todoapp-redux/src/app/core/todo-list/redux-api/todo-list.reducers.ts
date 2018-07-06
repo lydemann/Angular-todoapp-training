@@ -3,6 +3,16 @@ import { TodoListActionTypes } from '@app/core/todo-list/redux-api/todo-list.act
 import { GenericAction } from '@app/store/generic-action';
 import { TODOItem } from '@app/shared/models/todo-item';
 
+const todoItemsLoaded = (
+  lastState: TodoListState,
+  action: GenericAction<TodoListActionTypes, TODOItem[]>
+): TodoListState => {
+  return {
+    ...lastState,
+    todos: action.payload
+  };
+};
+
 const todoItemCreatedReducer = (
   lastState: TodoListState,
   action: GenericAction<TodoListActionTypes, TODOItem>
@@ -18,19 +28,32 @@ const todoItemCreatedReducer = (
 const todoItemDeletedReducer = (
   lastState: TodoListState,
   action: GenericAction<TodoListActionTypes, string>
-) => {
+): TodoListState => {
+  const deleteIdx = lastState.todos.findIndex(
+    todo => todo.id === action.payload
+  );
+
+  lastState.todos.splice(deleteIdx, 1);
+
   return { ...lastState };
 };
 const todoItemUpdatedReducer = (
   lastState: TodoListState,
   action: GenericAction<TodoListActionTypes, TODOItem>
-) => {
+): TodoListState => {
+  const updatedTodoIdx = lastState.todos.findIndex(
+    todo => todo.id === action.payload.id
+  );
+  lastState.todos[updatedTodoIdx] = action.payload;
   return { ...lastState };
 };
 const todoItemCompletedReducer = (
   lastState: TodoListState,
   action: GenericAction<TodoListActionTypes, string>
 ) => {
+
+  lastState.todos.find(todo => todo.id === action.payload).completed = true;
+
   return { ...lastState };
 };
 
@@ -39,6 +62,8 @@ export const TodoListReducers = (
   action: GenericAction<TodoListActionTypes, any>
 ): TodoListState => {
   switch (action.type) {
+    case TodoListActionTypes.TodoItemsLoaded:
+      return todoItemsLoaded(lastState, action);
     case TodoListActionTypes.TodoItemCreated:
       return todoItemCreatedReducer(lastState, action);
     case TodoListActionTypes.TodoItemDeleted:
@@ -49,8 +74,6 @@ export const TodoListReducers = (
       return todoItemCompletedReducer(lastState, action);
 
     default:
-      return {
-        ...lastState
-      };
+      return lastState;
   }
 };
