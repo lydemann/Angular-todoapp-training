@@ -1,10 +1,13 @@
+import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { AppState } from '@app/store/state.model';
+import { select } from '@angular-redux/store';
+import { TODOItem } from '@app/shared/models/todo-item';
 
 export const todoListSelector = (appState: AppState) => appState.todoList;
 
 @Injectable()
 export class TodoListSelector {
 
-    // TODO: setup todolist selectors
+    @select(todoListSelector) todoList$: Observable<TODOItem[]>;
 }

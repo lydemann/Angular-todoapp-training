@@ -9,10 +9,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { FooterComponent } from './footer/footer.component';
-import { AddTodoComponent } from './add-todo/add-todo.component';
 import { CoreModule } from './core/core.module';
 import { TodoListCompletedComponent } from './todo-list-completed/todo-list-completed.component';
 import { SharedModule } from './shared/shared.module';
+import { AddTodoComponent } from '@app/todo-list/add-todo/add-todo.component';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
     NavbarComponent,
     TodoListComponent,
     FooterComponent,
-    AddTodoComponent,
+    AddTodoComponent, // TODO: move to todolist module
     TodoListCompletedComponent
 ],
   imports: [

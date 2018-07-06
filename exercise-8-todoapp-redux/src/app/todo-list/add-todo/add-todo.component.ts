@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TODOItem } from '@app/shared/models/todo-item';
-import { TodoListService } from '@app/core/todo-list.service';
+import { TodoListService } from '@app/core/todo-list/todo-list.service';
 
 @Component({
   selector: 'app-add-todo',

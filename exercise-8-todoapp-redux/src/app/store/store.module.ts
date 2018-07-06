@@ -10,9 +10,9 @@ import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store'
 import { createLogger } from 'redux-logger';
 
 // The top-level reducers and epics that make up our app's logic.
-import { AppState } from './model';
 import { rootReducer } from './reducers';
 import { RootEpics } from './epics';
+import { AppState } from '@app/store/state.model';
 
 @NgModule({
   imports: [NgReduxModule],
@@ -29,7 +29,7 @@ export class StoreModule {
     // it too.
     store.configureStore(
       rootReducer,
-      {},
+      null,
       [ createLogger(), ...rootEpics.createEpics() ],
       devTools.isEnabled() ? [ devTools.enhancer() ] : []);
   }

@@ -11,6 +11,6 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
     InvalidDateValidatorDirective,
     TodoItemComponent
 ],
-  exports: [InvalidDateValidatorDirective]
+  exports: [InvalidDateValidatorDirective, TodoItemComponent]
 })
 export class SharedModule { }

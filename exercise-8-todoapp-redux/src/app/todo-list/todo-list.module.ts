@@ -9,7 +9,7 @@ import { AddTodoComponent } from '@app/todo-list/add-todo/add-todo.component';
 
 @NgModule({
   declarations: [
-    AddTodoComponent
+    AddTodoComponent,
 ],
   imports: [
     BrowserModule,
