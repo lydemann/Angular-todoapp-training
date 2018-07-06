@@ -21,7 +21,6 @@ import { AddTodoComponent } from '@app/todo-list/add-todo/add-todo.component';
     NavbarComponent,
     TodoListComponent,
     FooterComponent,
-    AddTodoComponent, // TODO: move to todolist module
     TodoListCompletedComponent
 ],
   imports: [
